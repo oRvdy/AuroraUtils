@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.auroramc.ryverday.utils</groupId>
+    <artifactId>AuroraUtils</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <main>com.auroramc.ryverday.utils.Main</main>
+        <main-bungee>com.auroramc.ryverday.utils.bungee.Bungee</main-bungee>
+
+        <protocollib.version>4.5.0</protocollib.version>
+        <placeholder-api.version>2.10.5</placeholder-api.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>nms-repo</id>
+            <url>https://repo.codemc.org/repository/nms/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit.craftbukkit</groupId>
+            <artifactId>BukikitChato</artifactId>
+            <version>lasted</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/Administrator/OneDrive/Área de Trabalho/Aurora - Skywars Server/server.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>dev.auroramc.laas.cosmetics</groupId>
+            <artifactId>Cosmetico</artifactId>
+            <version>lasted</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/Administrator/OneDrive/Área de Trabalho/AuroraCosmetics-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>dev.auroramc.laas</groupId>
+            <artifactId>Core</artifactId>
+            <version>lasted</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/Administrator/OneDrive/Área de Trabalho/Aurora - Skywars Server/plugins/AuroraCommon-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.20-R0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>C:\plugins\${project.artifactId}.jar</outputFile>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>net.md_5:*</exclude>
+                                    <exclude>cglib:*</exclude>
+                                    <exclude>com.comphenix.**:*</exclude>
+                                    <exclude>me.clip:*</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

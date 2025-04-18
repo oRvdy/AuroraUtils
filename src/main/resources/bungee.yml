@@ -1,0 +1,5 @@
+name: ${pom.artifactId}
+version: ${pom.version}
+author: RyverDay
+
+main: ${main-bungee}
